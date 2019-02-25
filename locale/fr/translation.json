@@ -36,7 +36,7 @@
             "no_results": "Aucun résultat pour la recherche {{query}}"
         },
         "footer": {
-            "ips_network": "Merge Swap (Aviator)"
+            "ips_network": "Hotchain"
         }
     },
     "explorer": {

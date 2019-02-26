@@ -1,19 +1,17 @@
 
-[![Discord](https://img.shields.io/discord/102860784329052160.svg?style=plastic)](https://discord.gg/axDqQs)
+[![Discord](https://img.shields.io/discord/102860784329052160.svg?style=plastic)](https://discord.gg/k396XgX)
 
 
-![Image of Ipsum](https://ipsum.network/images/logo-ipsum-coin-blue.png)
-
-Ipsum Explorer - 1.7.3
+Hotchain Explorer - 1.0.0
 ================
 
-The Ipsum Explorer block explorer.
+The Hotchain block explorer.
 
-This project is a fork of [Iquidus Explorer](https://github.com/iquidus/explorer) so massive thanks go out to Luke Williams for his code! Thank you!!!
+This project is a fork of The [Ipsum Explorer block explorer](https://github.com/Aviator-Coding/ips-explorer) which is a fork of [Iquidus Explorer](https://github.com/iquidus/explorer) so massive thanks go out to Luke Williams and to the Ipsum devs for their code! Thank you!!!
 
 ### See it in action
 
-*  [explorer.ipsum.network](https://explorer.ipsum.network)
+*  [explorer.hotchain.me](https://explorer2.hotchain.me)
 
 
 ### Requires
@@ -42,11 +40,11 @@ Create user with read/write access:
 
 ### Get the source
 
-    git clone https://github.com/Aviator-Coding/ips-explorer.git explorer
+    cd /opt && git clone https://github.com/Hotchain-HOTX/explorer-base
 
 ### Install node modules
 
-    cd explorer && npm install --production
+    cd explorer-base && npm install --production
 
 ### Configure
 
@@ -94,12 +92,13 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
 
 **crontab**
 
-*Example crontab; update index every minute and market data every 2 minutes*
+*Advanced crontabs by Hotadmin, take care of sync freezes and service uptime, adapt to your environment*
 
-    */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
-    */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
-    */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/masternodes.js > /dev/null 2>&1
-    */5 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
+    @reboot root /usr/local/bin/hotchaind && sleep 10 && cd /opt/explorer-base && npm start > /dev/null 2>&1
+    */1 * * * * cd /opt/explorer-base && if test `find tmp/index.pid -mmin +3`; then rm -rf tmp/index.pid && /usr/bin/nodejs scripts/sync.js index update; else /usr/bin/nodejs scripts/sync.js index update; fi > /dev/null 2>&1
+    */2 * * * * cd /opt/explorer-base && /usr/bin/nodejs scripts/masternodes.js > /dev/null 2>&1
+    */5 * * * * cd /opt/explorer-base && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
+    */10 * * * * cd /opt/explorer-base && curl -s localhost:3001 && echo ok || killall -9 nodejs; npm start > /dev/null 2>&1
 
 forcesync.sh and forcesynclatest.sh (located in scripts/) can be used to force the explorer to sync at the specified block heights
 
@@ -151,6 +150,7 @@ Where [SIZE] is an integer higher than the default.
 
 ### License
 
+Copyright (c) 2019, The Hotchain Developers
 Copyright (c) 2018, The IPSUM Community 
 Copyright (c) 2017, The Chaincoin Community  
 Copyright (c) 2015, Iquidus Technology  

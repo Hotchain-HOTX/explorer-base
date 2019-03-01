@@ -1,5 +1,5 @@
 
-[![Discord](https://img.shields.io/discord/102860784329052160.svg?style=plastic)](https://discord.gg/k396XgX)
+
 
 
 Hotchain Explorer - 1.0.0
@@ -98,7 +98,7 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
     */1 * * * * cd /opt/explorer-base && if test `find tmp/index.pid -mmin +3`; then rm -rf tmp/index.pid && /usr/bin/nodejs scripts/sync.js index update; else /usr/bin/nodejs scripts/sync.js index update; fi > /dev/null 2>&1
     */2 * * * * cd /opt/explorer-base && /usr/bin/nodejs scripts/masternodes.js > /dev/null 2>&1
     */5 * * * * cd /opt/explorer-base && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
-    */10 * * * * cd /opt/explorer-base && curl -s localhost:3001 && echo ok || killall -9 nodejs; npm start > /dev/null 2>&1
+    
 
 forcesync.sh and forcesynclatest.sh (located in scripts/) can be used to force the explorer to sync at the specified block heights
 
